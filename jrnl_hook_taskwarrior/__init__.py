@@ -14,12 +14,7 @@ config = w.load_config()
 if ('journal_name' in config):
     JOURNAL_NAME = config['journal_name']
 else:
-    JOURNAL_NAME = 1
-    
-if ('max_active_tasks' in config):
-    MAX_ACTIVE = int(config['max_active_tasks'])
-else:
-    MAX_ACTIVE = 1
+    JOURNAL_NAME = "default"
     
 def main():
     original = json.loads(sys.stdin.readline())
