@@ -15,7 +15,7 @@ ID Age D Project                     Tags                     Sch Due        Des
 $ task 1 start
 ```
 
-That action will call jrnl like this
+That action will call the hook and run jrnl like this : 
 
 ```sh
 

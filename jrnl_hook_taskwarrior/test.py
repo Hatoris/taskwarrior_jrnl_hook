@@ -9,12 +9,17 @@ from pathlib import Path
 
 UDA_KEY = 'jrnl'
 
+# read config info from taskwarrior config file
 w = TaskWarrior()
 config = w.load_config()
+
+# read the name of journal to put info in it
 if ('journal_name' in config):
     JOURNAL_NAME = config['journal_name']
 else:
     JOURNAL_NAME = "default"
+
+# read tags symbol of jrnl to add to tags from taskwarrior 
 if ('journal_config' in config):
     JOURNAL_CONFIG = Path(config['journal_config'])
 else:
