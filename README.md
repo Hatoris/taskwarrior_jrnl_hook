@@ -10,8 +10,8 @@ Starting a task will be automaticly pass its description to jrnl. If task have t
 
 $ task list
 ID Age D Project                     Tags                     Sch Due        Description                          Urg
--- --  - -------                     ----                     --- ---        ----------------------------------   ---
- 1 10d   perso.administration.bill   administration perso         2018-09-21 Pay electricity bill                  14
+-- --- - -------                     ----                     --- ---        ----------------------------------   ---
+ 1  1d   perso.administration.bill   administration perso         2018-09-21 Pay electricity bill                  14
 $ task 1 start
 ```
 
@@ -19,8 +19,15 @@ That action will call the hook and run jrnl like this :
 
 ```sh
 
-jrnl Pay electricity bill @administration @perso
+jrnl "Pay electricity bill @administration @perso \n project:perso.administration.bill"
 
+```
+
+Now if you look in your journal 
+
+```sh
+jrnl -1
+2018-09-21 9h35 Pay electricity bill @administration @perso
 ```
 
 ## Install
@@ -42,13 +49,13 @@ Then add the hook to .task/hook folder
 By default this hook will look config info in your ~/.taskrc config file. Defaul option are built in the hook, if you want to change parameters addin your jrnl put these follwing entry in your taswarrior config file.
     
 ```sh
-journal_name=default
+jrnl_name=default
 ```
 
 If specify, this hook will use jrnl name defined in the config, otherwise it will use default jrnl.
 
 ```sh
-journal_config=~/.jrnl_config
+jrnl_config=~/.jrnl_config
 ```
 
 Specify an other path for .jrnl_config.
@@ -65,7 +72,7 @@ This option add project as entry under your title
 
 ```sh
 jrnl_by_month=False
-langue='En'
+language='En'
 ```
 This option is a petsonal one, if set to `True` hook script will call jrnl for the given month. You can specify langue in order to get the right spelling for the month .
 
