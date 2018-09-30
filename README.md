@@ -9,8 +9,9 @@ Starting a task will be automaticly pass its description to jrnl. If task have t
 ```sh
 
 $ task list
-ID Age D Project                     Tags                     Sch Due        Description                              Urg
- 1 10d   perso.administration        administration perso         2018-09-21 Pay electricity bill                     14
+ID Age D Project                     Tags                     Sch Due        Description                          Urg
+-- --  - -------                     ----                     --- ---        ----------------------------------   ---
+ 1 10d   perso.administration.bill   administration perso         2018-09-21 Pay electricity bill                  14
 $ task 1 start
 ```
 
