@@ -6,6 +6,22 @@ Taskwarrior allow annotation, but I found it less pratcle than jrnl. In oder, to
 
 Starting a task will be automaticly pass its description to jrnl. If task have tags they will be added into the title with cotresponding symbol in jrnl (by default, jrnl tags are mark with "@").
 
+```sh
+
+$ task list
+ID Age D Project                     Tags                     Sch Due        Description                              Urg
+ 1 10d   perso.administration        administration perso         2018-09-21 Pay electricity bill                     14
+$ task 1 start
+```
+
+That action will call jrnl like this
+
+```sh
+
+jrnl Pay electricity bill @administration @perso
+
+```
+
 ## Install
 
 ```sh
