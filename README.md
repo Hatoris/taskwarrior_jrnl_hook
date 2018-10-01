@@ -58,6 +58,10 @@ Par défaut, ce hook recherche les informations de configuration dans votre fich
 Options :
 
 1. [jrnl name](#jrnl_name)
+2. [jrnl configuration](#jrnl_configuration)
+3. [tags](#tags)
+4. [project](#project)
+5. [filter](#filter)
 
 ### jrnl name
     
@@ -76,11 +80,15 @@ Personaly I written a jrnl for each month, so I add an option to get month name 
 
 If set to `True` hook script will call jrnl for the given month. You can specify langue in order to get the right spelling for the month .
 
+### jrnl configuration
+
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
 |`jrnl_config` | `~/.jrnl_config` | Path to your jrnl configuration|
 
 In order to use the correct tags symbol you use in your jrnl, the script need to read your jrnl configuration.
+
+### tags
 
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
@@ -88,11 +96,15 @@ In order to use the correct tags symbol you use in your jrnl, the script need to
 
 This option allow you to add taskwarrior tags to your jrnl title formated with jrnl tags symbol.
 
+### project
+
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
 |`add_project` | True | Add project to jrnl|
 
 This option add project entry under your title on jrnl.
+
+### filter 
 
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
