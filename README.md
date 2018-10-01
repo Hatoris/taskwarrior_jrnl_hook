@@ -20,7 +20,7 @@ ID Age D Project                     Tags                     Sch Due        Des
 $ task 1 start
 ```
 
-That action will call the hook and run jrnl like this : 
+That action will call the hook and run jrnl as a subprocess.
 
 ```sh
 
@@ -28,7 +28,7 @@ jrnl "Pay electricity bill @administration @perso"
 
 ```
 
-Now if you look in your jrnl
+Now, if you look in your jrnl you should see task description added as title with tags from taskwarrior.
 
 ```sh
 jrnl -1
@@ -46,6 +46,8 @@ pip install jrnl_hook_taskwarrior
 Then add the hook to .task/hook folder
 
 ```sh
+mkdir -p ~/.task/hooks
+ln -s ~/.local/bin/taskwarrior_jrnl_hook ~/.task/hooks/on-modify.jrnl
 
 ```
 
