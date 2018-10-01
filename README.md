@@ -1,10 +1,15 @@
-# jrnl_hook_taskwarrior
+# taskwarrior-jrnl-hook
 
-Taskwarrior allow annotation, but I found it less pratcle than jrnl. In oder, to bring together both of this great tools this hook has been writen.
+Taskwarrior allow annotation of tasks, but I find it less practical than using jrnl to do so. This hook bring together both of this great tools.
+
+* [Taskwarrior](https://taskwarrior.org)
+* [jrnl](http://jrnl.sh)
+
+This script was inspirated by [taskwarrior-time-tracking-hook](https://github.com/kostajh/taskwarrior-time-tracking-hook)
 
 ## Principal
 
-Starting a task will be automaticly pass its description to jrnl. If task have tags they will be added into the title with cotresponding symbol in jrnl (by default, jrnl tags are mark with "@").
+Starting a task will automatically pass its description to jrnl. If started task have tags they will be added into the title with corresponding symbol in jrnl (by default, jrnl tags are mark with "@").
 
 ```sh
 
@@ -23,7 +28,7 @@ jrnl "Pay electricity bill @administration @perso"
 
 ```
 
-Now if you look in your journal 
+Now if you look in your jrnl
 
 ```sh
 jrnl -1
@@ -46,7 +51,7 @@ Then add the hook to .task/hook folder
 
 ## Configuration
 
-By default this hook will look config info in your ~/.taskrc config file. Default options are built in the hook, if you want to change hook behavior put these follwing entry in your taswarrior config file.
+By default this hook will look config info in your ~/.taskrc config file. Default options are built in the hook, if you want to change hook behavior put options entry in your taswarrior config file.
     
 ```sh
 jrnl_name=default
@@ -78,9 +83,13 @@ add_project=False
 ```
 This option add project entry under your title
 
+```sh
 
+filter_tags=perso,familly
 
+```
 
+This option allow you to exclude by tags tasks that you don't want to see in your jrnl.
 
 
 
