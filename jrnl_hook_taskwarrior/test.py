@@ -25,8 +25,6 @@ if ('journal_config' in config):
 else:
     JOURNAL_CONFIG = os.path.expanduser("~/.jrnl_config")
 
-print(JOURNAL_CONFIG)
-
 def get_jrnl_tags_symbol():
     with open(JOURNAL_CONFIG, "r") as f:
         journal_config = json.load(f)
