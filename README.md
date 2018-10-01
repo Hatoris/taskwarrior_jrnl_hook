@@ -53,7 +53,13 @@ ln -s ~/.local/bin/taskwarrior_jrnl_hook ~/.task/hooks/on-modify.jrnl
 
 ## Configuration
 
-By default this hook will look config info in your ~/.taskrc config file. Default options are built in the hook, if you want to change hook behavior put options entry in your taswarrior config file.
+Par défaut, ce hook recherche les informations de configuration dans votre fichier de configuration `~/.taskrc`. Les options par défaut sont intégrées dans le crochet, si vous souhaitez modifier le comportement du crochet, placez les options d’entrée dans votre fichier de configuration taskwarrior.
+
+Options :
+    
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|jrnl_name | default | jrnl name to write in it|
     
 ```sh
 jrnl_name=default
