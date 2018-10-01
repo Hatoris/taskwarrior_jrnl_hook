@@ -56,46 +56,47 @@ ln -s ~/.local/bin/taskwarrior_jrnl_hook ~/.task/hooks/on-modify.jrnl
 Par défaut, ce hook recherche les informations de configuration dans votre fichier de configuration `~/.taskrc`. Les options par défaut sont intégrées dans le crochet, si vous souhaitez modifier le comportement du crochet, placez les options d’entrée dans votre fichier de configuration taskwarrior.
 
 Options :
+
+1. [jrnl name](#jrnl_name)
+
+### jrnl name
     
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
-|jrnl_name | default | jrnl name to write in it|
-    
-```sh
-jrnl_name=default
-```
+|`jrnl_name` | default | jrnl name to write in it|
 
 If specify, this hook will use jrnl name defined in the config, otherwise it will use default jrnl. 
 
-Personaly I written a jrnl for each month, so I add an option to get month name from starting task and use it as jrnl name.
+Personaly I written a jrnl for each month, so I add an option to get month name from started task and use it as jrnl name.
 
-```sh
-jrnl_by_month=False
-language='En'
-```
-This option is a petsonal one, if set to `True` hook script will call jrnl for the given month. You can specify langue in order to get the right spelling for the month .
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`jrnl_by_month` | False | Use month as jrnl name|
+|`language` | en | langiage to output month |
 
-```sh
-jrnl_config=~/.jrnl_config
-```
+If set to `True` hook script will call jrnl for the given month. You can specify langue in order to get the right spelling for the month .
 
-Specify an other path for .jrnl_config.
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`jrnl_config` | `~/.jrnl_config` | Path to your jrnl configuration|
 
-```sh
-add_tags=True
-```
+In order to use the correct tags symbol you use in your jrnl, the script need to read your jrnl configuration.
+
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`jrnl_tags` | True | Add tags to jrnl|
+
 This option allow you to add taskwarrior tags to your jrnl title formated with jrnl tags symbol.
 
-```sh
-add_project=False
-```
-This option add project entry under your title
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`add_project` | True | Add project to jrnl|
 
-```sh
+This option add project entry under your title on jrnl.
 
-filter_tags=perso,familly
-
-```
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`filter_tags` | None | Task exclude by tags|
 
 This option allow you to exclude by tags tasks that you don't want to see in your jrnl.
 
