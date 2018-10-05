@@ -14,18 +14,15 @@ Starting a task will automatically pass its description to jrnl. If started task
 ```sh
 
 $ task list
-ID Age D Project                     Tags                     Sch Due        Description                          Urg
--- --- - -------                     ----                     --- ---        ----------------------------------   ---
- 1  1d   perso.administration.bill   administration perso         2018-09-21 Pay electricity bill                  14
+ID Tags                                  Due              Description       
+ 1  administration perso     2018-09-21 Pay electricity bill
 $ task 1 start
 ```
 
 That action will call the hook and run jrnl as a subprocess.
 
 ```sh
-
 jrnl "Pay electricity bill @administration @perso"
-
 ```
 
 Now, if you look in your jrnl you should see task description added as title with tags from taskwarrior.
@@ -38,9 +35,7 @@ jrnl -1
 ## Install
 
 ```sh
-
 pip install jrnl_hook_taskwarrior
-
 ```
 
 Then add the hook to .task/hook folder
@@ -48,12 +43,11 @@ Then add the hook to .task/hook folder
 ```sh
 mkdir -p ~/.task/hooks
 ln -s ~/.local/bin/taskwarrior_jrnl_hook ~/.task/hooks/on-modify.jrnl
-
 ```
 
 ## Configuration
 
-Par défaut, ce hook recherche les informations de configuration dans votre fichier de configuration `~/.taskrc`. Les options par défaut sont intégrées dans le crochet, si vous souhaitez modifier le comportement du crochet, placez les options d’entrée dans votre fichier de configuration taskwarrior.
+By default this hook will look config info in your ~/.taskrc config file. Default options are built in the hook, if you want to change hook behavior put options entry in your taskwarrior config file.
 
 Options :
 
@@ -67,18 +61,18 @@ Options :
     
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
-|`jrnl_name` | default | jrnl name to write in it|
+|`jrnl_name` | default | jnrl name to call|
 
-If specify, this hook will use jrnl name defined in the config, otherwise it will use default jrnl. 
+If specify, this hook will use the jrnl name defined in the config, otherwise it will use `default` as jrnl name.
 
-Personaly I written a jrnl for each month, so I add an option to get month name from started task and use it as jrnl name.
+Personally I write a journal for each month, so I added an option to get month name from started task and use it as jrnl name.
 
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
 |`jrnl_by_month` | False | Use month as jrnl name|
-|`language` | en | langiage to output month |
+|`language` | en | month's language to output| 
 
-If set to `True` hook script will call jrnl for the given month. You can specify langue in order to get the right spelling for the month .
+If set to `True` hook script will call jrnl for the given month. You can specify language in order to get the right spelling for the month. Month is written in all letters with no capital. 
 
 ### jrnl configuration
 
@@ -86,7 +80,7 @@ If set to `True` hook script will call jrnl for the given month. You can specify
 |:--------:|:----------:|:------------------|
 |`jrnl_config` | `~/.jrnl_config` | Path to your jrnl configuration|
 
-In order to use the correct tags symbol you use in your jrnl, the script need to read your jrnl configuration.
+In order to use correct tags symbol used in your jrnl, the script need to read your jrnl's configuration.
 
 ### tags
 
@@ -94,7 +88,7 @@ In order to use the correct tags symbol you use in your jrnl, the script need to
 |:--------:|:----------:|:------------------|
 |`jrnl_tags` | True | Add tags to jrnl|
 
-This option allow you to add taskwarrior tags to your jrnl title formated with jrnl tags symbol.
+This option allow you to add taskwarrior tags to your jrnl's title.
 
 ### project
 
@@ -102,13 +96,13 @@ This option allow you to add taskwarrior tags to your jrnl title formated with j
 |:--------:|:----------:|:------------------|
 |`add_project` | True | Add project to jrnl|
 
-This option add project entry under your title on jrnl.
+This option add project name under your title in the body.
 
 ### filter 
 
 |Name|Default|Description|
 |:--------:|:----------:|:------------------|
-|`filter_tags` | None | Task exclude by tags|
+|`filter_tags` | None | Tasks to be excluded by tags|
 
 This option allow you to exclude by tags tasks that you don't want to see in your jrnl.
 
