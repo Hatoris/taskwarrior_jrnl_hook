@@ -29,6 +29,11 @@ if 'start' in modified and 'start' not in original:
     LANGUAGE = TASK_CONFIG.get('language', 'en')
     FILTER_TAGS = TASK_CONFIG.get('filter_tags', False)
 
+    # read informations from modifed task
+
+    TAGS = modified.get("tags", [])
+    PROJECT = modified.get('project', '')
+
     # read info from jrnl_config
     with open(JRNL_CONFIG_PATH, "r") as f:
         JRNL_CONFIG = json.load(f)
@@ -37,23 +42,26 @@ if 'start' in modified and 'start' not in original:
     title = modified["description"]
 
     #add taskwarrior task to title
-    if "tags" in modified and ADD_TAGS:
-        for tag in modified["tags"]:
+    if TAGS and ADD_TAGS:
+        for tag in TAGS:
             title += f" {TAGS_SYMBOL}{tag}"
 
     #add taskwarrior project to new entry
-    if ADD_PROJECT:
-        title += f"\nproject:{modified['project']}"
+    if ADD_PROJECT and PROJECT:
+        title += f"\nproject:{PROJECT}"
 
     #Extract month name from task date
     if JRNL_BY_MONTH:
         date = datetime.datetime.strptime(modified['start'], TIME_FORMAT)
         JRNL_NAME = format_date(date, "MMMM", locale=LANGUAGE)
+        # French month can have accent, jrnl do not support journal name with it
+        JRNL_NAME.replace(r"é", "e")
+        JRNL_NAME.replace(r"û", "u")
 
     #Check if started task is in filtered task list
-    if FILTER_TAGS:
+    if FILTER_TAGS and TAGS:
         FILTER_TAGS = list(FILTER_TAGS.split(","))
-        filtered = any(map(lambda tag : tag in FILTER_TAGS, modified["tags"]))
+        filtered = any(map(lambda tag : tag in FILTER_TAGS,TAGS))
 
     if not filtered:
         p = subprocess.Popen(['jrnl', JRNL_NAME, title],  stdout=subprocess.PIPE)
