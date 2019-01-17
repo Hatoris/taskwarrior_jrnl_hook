@@ -62,6 +62,8 @@ if 'start' in modified and 'start' not in original:
     if FILTER_TAGS and TAGS:
         FILTER_TAGS = list(FILTER_TAGS.split(","))
         filtered = any(map(lambda tag : tag in FILTER_TAGS,TAGS))
+    else:
+        filtered = False
 
     if not filtered:
         p = subprocess.Popen(['jrnl', JRNL_NAME, title],  stdout=subprocess.PIPE)
