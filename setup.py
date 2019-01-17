@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='taskwarrior-jrnl-hook',
-    version='0.1.0',
-    url='https://github.com/Hatoris/taskwarrior-jrnl-hook',
+    name='taskwarrior_jrnl_hook',
+    version='0.1.1',
+    url='https://github.com/Hatoris/taskwarrior_jrnl_hook',
     description=(
         'A hook to add started task in taskwarrior to jrnl'
     ),
