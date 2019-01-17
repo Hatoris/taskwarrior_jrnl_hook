@@ -35,7 +35,7 @@ jrnl -1
 ## Install
 
 ```sh
-pip install taskwarrior_jrnl_hook
+pip install taskwarrior-jrnl-hook
 ```
 
 Then add the hook to .task/hook folder

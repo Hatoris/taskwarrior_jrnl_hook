@@ -1,1 +1,4 @@
 jrnl_hook_taskwarrior/__pycache__
+build/
+dist/
+taskwarrior_jrnl_hook.egg-info/
