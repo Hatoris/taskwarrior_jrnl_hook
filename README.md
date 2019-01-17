@@ -1,4 +1,4 @@
-# taskwarrior-jrnl-hook
+# taskwarrior_jrnl_hook
 
 Taskwarrior allow annotation of tasks, but I find it less practical than using jrnl to do so. This hook bring together both of this great tools.
 
@@ -35,7 +35,7 @@ jrnl -1
 ## Install
 
 ```sh
-pip install jrnl_hook_taskwarrior
+pip install taskwarrior_jrnl_hook
 ```
 
 Then add the hook to .task/hook folder
