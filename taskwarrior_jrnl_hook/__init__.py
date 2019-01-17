@@ -9,25 +9,27 @@ import sys
 
 from taskw import TaskWarrior
 
-TIME_FORMAT = '%Y%m%dT%H%M%SZ'
+TIME_FORMAT = "%Y%m%dT%H%M%SZ"
 
 original = json.loads(sys.stdin.readline())
 modified = json.loads(sys.stdin.readline())
 
-if 'start' in modified and 'start' not in original:
+if "start" in modified and "start" not in original:
 
     # read config info from taskwarrior config file
     w = TaskWarrior()
     TASK_CONFIG = w.load_config()
 
     # read infos from taskrc config file
-    JRNL_NAME = TASK_CONFIG.get('jrnl_name', 'default')
-    JRNL_CONFIG_PATH = os.path.expanduser(TASK_CONFIG.get('jrnl_config', '~/.jrnl_config'))
-    ADD_TAGS = TASK_CONFIG.get('add_tags', True)
-    ADD_PROJECT = TASK_CONFIG.get('add_project', False)
-    JRNL_BY_MONTH = TASK_CONFIG.get('jrnl_by_month', False)
-    LANGUAGE = TASK_CONFIG.get('language', 'en')
-    FILTER_TAGS = TASK_CONFIG.get('filter_tags', False)
+    JRNL_NAME = TASK_CONFIG.get("jrnl_name", "default")
+    JRNL_CONFIG_PATH = os.path.expanduser(
+        TASK_CONFIG.get("jrnl_config", "~/.jrnl_config")
+    )
+    ADD_TAGS = TASK_CONFIG.get("add_tags", True)
+    ADD_PROJECT = TASK_CONFIG.get("add_project", False)
+    JRNL_BY_MONTH = TASK_CONFIG.get("jrnl_by_month", False)
+    LANGUAGE = TASK_CONFIG.get("language", "en")
+    FILTER_TAGS = TASK_CONFIG.get("filter_tags", False)
 
     # read informations from modifed task
 
@@ -50,9 +52,10 @@ if 'start' in modified and 'start' not in original:
     if ADD_PROJECT and PROJECT:
         title += f"\nproject:{PROJECT}"
 
-    #Extract month name from task date
+
+    # Extract month name from task date
     if JRNL_BY_MONTH:
-        date = datetime.datetime.strptime(modified['start'], TIME_FORMAT)
+        date = datetime.datetime.strptime(modified["start"], TIME_FORMAT)
         JRNL_NAME = format_date(date, "MMMM", locale=LANGUAGE)
         # French month can have accent, jrnl do not support journal name with it
         JRNL_NAME.replace(r"é", "e")
@@ -66,8 +69,8 @@ if 'start' in modified and 'start' not in original:
         filtered = False
 
     if not filtered:
-        p = subprocess.Popen(['jrnl', JRNL_NAME, title],  stdout=subprocess.PIPE)
+        p = subprocess.Popen(["jrnl", JRNL_NAME, title], stdout=subprocess.PIPE)
         p.communicate()
 
-sys.stdout.write(json.dumps(modified, separators=(',',':')))
+sys.stdout.write(json.dumps(modified, separators=(",", ":")))
 sys.exit(0)

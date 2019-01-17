@@ -1,29 +1,31 @@
-# jrnl_hook_taskwarrior
+# taskwarrior-jrnl-hook
 
-Taskwarrior allow annotation, but I found it less pratcle than jrnl. In oder, to bring together both of this great tools this hook has been writen.
+Taskwarrior allow annotation of tasks, but I find it less practical than using jrnl to do so. This hook bring together both of this great tools.
+
+* [Taskwarrior](https://taskwarrior.org)
+* [jrnl](http://jrnl.sh)
+
+This script was inspirated by [taskwarrior-time-tracking-hook](https://github.com/kostajh/taskwarrior-time-tracking-hook)
 
 ## Principal
 
-Starting a task will be automaticly pass its description to jrnl. If task have tags they will be added into the title with cotresponding symbol in jrnl (by default, jrnl tags are mark with "@").
+Starting a task will automatically pass its description to jrnl. If started task have tags they will be added into the title with corresponding symbol in jrnl (by default, jrnl tags are mark with "@").
 
 ```sh
 
 $ task list
-ID Age D Project                     Tags                     Sch Due        Description                          Urg
--- --- - -------                     ----                     --- ---        ----------------------------------   ---
- 1  1d   perso.administration.bill   administration perso         2018-09-21 Pay electricity bill                  14
+ID Tags                                  Due              Description       
+ 1  administration perso     2018-09-21 Pay electricity bill
 $ task 1 start
 ```
 
-That action will call the hook and run jrnl like this : 
+That action will call the hook and run jrnl as a subprocess.
 
 ```sh
-
-jrnl "Pay electricity bill @administration @perso \n project:perso.administration.bill"
-
+jrnl "Pay electricity bill @administration @perso"
 ```
 
-Now if you look in your journal 
+Now, if you look in your jrnl you should see task description added as title with tags from taskwarrior.
 
 ```sh
 jrnl -1
@@ -33,58 +35,76 @@ jrnl -1
 ## Install
 
 ```sh
-
 pip install jrnl_hook_taskwarrior
-
 ```
 
 Then add the hook to .task/hook folder
 
 ```sh
-
+mkdir -p ~/.task/hooks
+ln -s ~/.local/bin/taskwarrior_jrnl_hook ~/.task/hooks/on-modify.jrnl
 ```
 
 ## Configuration
 
-By default this hook will look config info in your ~/.taskrc config file. Defaul option are built in the hook, if you want to change parameters addin your jrnl put these follwing entry in your taswarrior config file.
+By default this hook will look config info in your ~/.taskrc config file. Default options are built in the hook, if you want to change hook behavior put options entry in your taskwarrior config file.
+
+Options :
+
+1. [jrnl name](#jrnl_name)
+2. [jrnl configuration](#jrnl_configuration)
+3. [tags](#tags)
+4. [project](#project)
+5. [filter](#filter)
+
+### jrnl name
     
-```sh
-jrnl_name=default
-```
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`jrnl_name` | default | jnrl name to call|
 
-If specify, this hook will use jrnl name defined in the config, otherwise it will use default jrnl.
+If specify, this hook will use the jrnl name defined in the config, otherwise it will use `default` as jrnl name.
 
-```sh
-jrnl_config=~/.jrnl_config
-```
+Personally I write a journal for each month, so I added an option to get month name from started task and use it as jrnl name.
 
-Specify an other path for .jrnl_config.
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`jrnl_by_month` | False | Use month as jrnl name|
+|`language` | en | month's language to output| 
 
-```sh
-add_tags=True
-```
-This option allow you to add taskwarrior tags to your jrnl title
+If set to `True` hook script will call jrnl for the given month. You can specify language in order to get the right spelling for the month. Month is written in all letters with no capital. 
 
-```sh
-add_project=False
-```
-This option add project as entry under your title
+### jrnl configuration
 
-```sh
-jrnl_by_month=False
-language='En'
-```
-This option is a petsonal one, if set to `True` hook script will call jrnl for the given month. You can specify langue in order to get the right spelling for the month .
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`jrnl_config` | `~/.jrnl_config` | Path to your jrnl configuration|
 
-Exemple :
-    
-```sh
+In order to use correct tags symbol used in your jrnl, the script need to read your jrnl's configuration.
 
-task 2 start 
-jrnl september add new result on viabilty assay protocol
+### tags
 
-```
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`jrnl_tags` | True | Add tags to jrnl|
 
+This option allow you to add taskwarrior tags to your jrnl's title.
+
+### project
+
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`add_project` | True | Add project to jrnl|
+
+This option add project name under your title in the body.
+
+### filter 
+
+|Name|Default|Description|
+|:--------:|:----------:|:------------------|
+|`filter_tags` | None | Tasks to be excluded by tags|
+
+This option allow you to exclude by tags tasks that you don't want to see in your jrnl.
 
 
 
