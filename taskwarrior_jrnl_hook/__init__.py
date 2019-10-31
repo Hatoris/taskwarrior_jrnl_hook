@@ -2,6 +2,7 @@
 from babel.dates import format_date
 import datetime
 import json
+import yaml
 import os
 import re
 import subprocess
@@ -38,7 +39,10 @@ if "start" in modified and "start" not in original:
 
     # read info from jrnl_config
     with open(JRNL_CONFIG_PATH, "r") as f:
-        JRNL_CONFIG = json.load(f)
+        try:
+            JRNL_CONFIG = json.load(f)
+        except json.JSONDecodeError:
+            JRNL_CONFIG = yaml.load(f)
     TAGS_SYMBOL = JRNL_CONFIG.get("tagsymbols", "@")
 
     title = modified["description"]
