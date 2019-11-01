@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='taskwarrior_jrnl_hook',
-    version='0.1.3',
+    version='0.1.4',
     url='https://github.com/Hatoris/taskwarrior_jrnl_hook',
     description=(
         'A hook to add started task in taskwarrior to jrnl'
@@ -20,7 +20,8 @@ setup(
     ],
     install_requires=[
         "taskw",
-        "babel"
+        "babel",
+        "pyyaml"
     ],
     packages=find_packages(),
     entry_points={
