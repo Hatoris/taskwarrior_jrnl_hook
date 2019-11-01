@@ -42,6 +42,7 @@ if "start" in modified and "start" not in original:
         try:
             JRNL_CONFIG = json.load(f)
         except json.JSONDecodeError:
+            f.seek(0) # Get back the file pointer
             JRNL_CONFIG = yaml.load(f, Loader=yaml.FullLoader)
     TAGS_SYMBOL = JRNL_CONFIG.get("tagsymbols", "@")
 
