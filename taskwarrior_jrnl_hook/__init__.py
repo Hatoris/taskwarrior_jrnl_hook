@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-from babel.dates import format_date
 import datetime
 import json
-import yaml
 import os
 import re
 import subprocess
 import sys
 
+from babel.dates import format_date
 from taskw import TaskWarrior
+import yaml
 
 TIME_FORMAT = "%Y%m%dT%H%M%SZ"
 
@@ -39,11 +39,7 @@ if "start" in modified and "start" not in original:
 
     # read info from jrnl_config
     with open(JRNL_CONFIG_PATH, "r") as f:
-        try:
-            JRNL_CONFIG = json.load(f)
-        except json.JSONDecodeError:
-            f.seek(0) # Get back the file pointer
-            JRNL_CONFIG = yaml.load(f, Loader=yaml.FullLoader)
+        JRNL_CONFIG = yaml.load(f, Loader=yaml.FullLoader)
     TAGS_SYMBOL = JRNL_CONFIG.get("tagsymbols", "@")
 
     title = modified["description"]
