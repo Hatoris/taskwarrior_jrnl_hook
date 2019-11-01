@@ -42,7 +42,7 @@ if "start" in modified and "start" not in original:
         try:
             JRNL_CONFIG = json.load(f)
         except json.JSONDecodeError:
-            JRNL_CONFIG = yaml.load(f)
+            JRNL_CONFIG = yaml.load(f, Loader=yaml.FullLoader)
     TAGS_SYMBOL = JRNL_CONFIG.get("tagsymbols", "@")
 
     title = modified["description"]
