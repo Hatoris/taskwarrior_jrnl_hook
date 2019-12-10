@@ -59,8 +59,8 @@ if "start" in modified and "start" not in original:
         date = datetime.datetime.strptime(modified["start"], TIME_FORMAT)
         JRNL_NAME = format_date(date, "MMMM", locale=LANGUAGE)
         # French month can have accent, jrnl do not support journal name with it
-        JRNL_NAME.replace(r"é", "e")
-        JRNL_NAME.replace(r"û", "u")
+        JRNL_NAME = JRNL_NAME.replace(r"é", "e")
+        JRNL_NAME = JRNL_NAME.replace(r"û", "u")
 
     #Check if started task is in filtered task list
     if FILTER_TAGS and TAGS:
