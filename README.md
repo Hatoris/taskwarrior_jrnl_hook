@@ -1,6 +1,6 @@
 # taskwarrior_jrnl_hook
 
-Taskwarrior allow annotation of tasks, but I find it less practical than using jrnl to do so. This hook bring together both of this great tools.
+Taskwarrior allow annotation of tasks, but I find it less practical than using jrnl to do so. This hook bring together both of these great tools.
 
 * [Taskwarrior](https://taskwarrior.org)
 * [jrnl](http://jrnl.sh)
